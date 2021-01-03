@@ -3,12 +3,12 @@
 namespace Supermetrics\Http\Apiv1;
 
 use Assert\InvalidArgumentException;
-use Boot\Supermetrics;
+use Supermetrics\Http\BaseController;
 use Supermetrics\Requests\ApiJsonResponse;
 use Supermetrics\Requests\ApiRequest;
 use Supermetrics\Service\PostManager;
 
-class PostsController
+class PostsController extends BaseController
 {
     /**
      * @param ApiRequest $apiRequest
@@ -19,9 +19,8 @@ class PostsController
      */
     public function indexAction(ApiRequest $apiRequest, ApiJsonResponse $apiJsonResponse)
     {
-        $container = Supermetrics::getContainer();
         /** @var PostManager $manager */
-        $manager = $container->get(PostManager::class);
+        $manager = $this->getContainer()->get(PostManager::class);
         try {
             return $apiJsonResponse->success($manager->getReportResult());
         } catch (InvalidArgumentException $exception) {

@@ -30,6 +30,10 @@ class MysqlPostRepository implements PostsRepositoryInterface
         $this->db = new MeekroDB($host, $user, $pass, $db);
     }
 
+    /**
+     * @param $id
+     * @return mixed|void
+     */
     public function find($id)
     {
         // TODO: Implement find() method.
@@ -51,7 +55,10 @@ class MysqlPostRepository implements PostsRepositoryInterface
         $this->db->insertUpdate(self::TABLE, $data, "id=%s", $post->getId());
     }
 
-
+    /**
+     * @param Post $post
+     * @return mixed|void
+     */
     public function remove(Post $post)
     {
         // TODO: Implement remove() method.
@@ -63,7 +70,7 @@ class MysqlPostRepository implements PostsRepositoryInterface
     public function findReportPerMonth()
     {
         $longest =  $this->db->query("select  year(posts.created_time) as year, month(created_time) months ,avg(CHAR_LENGTH(posts.message)) as avg_length, max(CHAR_LENGTH(posts.message)) as longest_post from posts GROUP BY year(created_time), MONTH(created_time)");
-        $user = $this->db->query("select year(posts.created_time) as year, posts.from_id, count(*) as all_user_specific_posts , month(posts.created_time) as months from posts GROUP BY year(created_time), months ,  posts.from_id");
+        $user = $this->db->query("select year(posts.created_time) as year, posts.from_id, count(*) as posts , month(posts.created_time) as months from posts GROUP BY year(created_time), months ,  posts.from_id");
         return ['posts' => $longest, 'users_posts' => $user];
     }
 
