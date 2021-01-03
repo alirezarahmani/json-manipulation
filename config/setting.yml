@@ -1,0 +1,5 @@
+mysql:
+    uri: mysql
+    user: root
+    pass: root
+    db: supermetrics
