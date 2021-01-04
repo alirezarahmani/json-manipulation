@@ -11,7 +11,7 @@ How to use:
 
 I personally prefer docker, but the choice is yours, in order to use, you need to follow:
 
-- run `./start.sh` 
+- run `./build.sh` 
 - check if your docker containers are running (docker ps)
 - run `docker-compose exec worker composer install`
 - run query (which is at the end of this document) on db (migration and seeding are missing according to lack of time).
