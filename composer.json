@@ -18,7 +18,8 @@
     "symfony/console": "5.*",
     "symfony/finder": "5.*",
     "sergeytsalkov/meekrodb": "^2.3",
-    "guzzlehttp/guzzle": "^7.2"
+    "guzzlehttp/guzzle": "^7.2",
+    "beberlei/assert": "dev-master"
   },
   "autoload": {
     "psr-4": {
